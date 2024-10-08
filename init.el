@@ -10,26 +10,52 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(require 'use-package)
-(setq use-package-compute-statistics t)
+(setq ox/packages-directory (expand-file-name "packages/" real-emacs-directory)
+      ox/features-directory (expand-file-name "features/" real-emacs-directory)
+      ox/profiles-directory (expand-file-name "profiles/" real-emacs-directory))
 
-(use-package use-package
-  :custom
-  (use-package-verbose init-file-debug)
-  (use-package-always-ensure t)
-  (use-package-always-defer  t))
+(defun ox/load (directory file-name)
+  (load (expand-file-name (format "%s.el" file-name) directory)))
+
+(defun ox/load-package (package)
+  (ox/load ox/packages-directory package))
+
+(defun ox/load-feature (feature)
+  (ox/load ox/features-directory feature))
+
+(defun ox/load-profile (profile)
+  (ox/load ox/profiles-directory profiles))
+
+(ox/load-package "sane-defaults")
+(ox/load-package "use-package")
+(ox/load-package "gcmh")
 
 (use-package emacs
   :custom
   custom-file (expand-file-name "custome.el" user-emacs-directory)
   :config
-  (load-theme 'wombat))
-
-(use-package gcmh
-  :hook (after-init . gcmh-mode)
-  :custom
-  gcmh-verbose t
-  gcmh-auto-idle-delay-factor 10
-  gcmh-high-cons-threshold (* 100 1024 1024) ; 100MB
-  :config
-  (remove-hook 'after-init-hook #'ox/revert-gc))
+  (load-theme 'wombat)
+  (defun ox/set-default-font (&rest fonts)
+    (unless (null fonts)
+      (if (find-font (font-spec :name (car fonts)))
+	  (set-face-attribute 'default nil
+			      :font (car fonts)
+			      :height 90
+			      :weight 'light)
+	(apply #'ox/set-default-font (cdr fonts)))))
+  (ox/set-default-font "ioZevka Code"
+		       "ioZevka Mono"
+		       "JetBrains Mono"
+		       "monospace")
+  (defun ox/set-font (script &rest fonts)
+    (set-fontset-font t script (car fonts))
+    (dolist (font (cdr fonts))
+      (set-fontset-font t script font nil 'append))
+    (set-fontset-font t script (font-spec :script script) nil 'append))
+  (ox/set-font 'arabic
+	       "Vazir Code Extra Height WOL"
+	       "Vazir Code WOL"
+	       "Vazir Code Extra Height"
+	       "Vazir Code"
+	       "Noto Sans Arabic"
+	       "Noto Naskh Arabic"))

@@ -26,10 +26,8 @@
       ;; settinsg at the end of your init.el
       package--init-file-ensured t
       ;; disable unnecessary ui elements
-      default-frame-alist '((menu-bar-lines . 0)
-			    (tool-bar-lines . 0)
-			    (vertical-scroll-bars))
-      menu-bar-mode nil
+      default-frame-alist '((vertical-scroll-bars)
+			    (tool-bar-lines . 0))
       tool-bar-mode nil
       scroll-bar-mode nil
       ;; don't show the (in)famous emacs startup buffer
@@ -41,10 +39,13 @@
       user-emacs-directory (expand-file-name "emacs/"
 					     (or (getenv "XDG_CACHE_HOME")
 						 (expand-file-name ".cache" "~"))))
-      
+
+;; disable menu bar unless in MacOS
+(unless (eq system-type 'darwin)
+  (push '(menu-bar-lines . 0) default-frame-alist)
+  (setq menu-bar-mode nil))
 
 (defun ox/revert-gc ()
-  (message "yoo")
   (setq gc-cons-threshold (* 16 1024 1024) ; 16MB
 	gc-cons-percentage 0.1))
 (add-hook 'after-init-hook #'ox/revert-gc)
