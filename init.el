@@ -1,4 +1,4 @@
-;; -*- lexical-binding: t; -*-   
+;; -*- lexical-binding: t; -*-
 (require 'package)
 
 (setq package-archives
@@ -29,6 +29,7 @@
 (ox/load-package "sane-defaults")
 (ox/load-package "use-package")
 (ox/load-package "gcmh")
+(ox/load-package "adaptive-wrap")
 
 (use-package emacs
   :custom
