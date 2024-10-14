@@ -74,8 +74,15 @@
 
 ;; Latin
 (ox/set-font "fontset-sans"
-	     'ascii
-	     "ioZevka Quasi")
+	     'latin
+	     "ioZevka Quasi"
+	     "Noto Sans"
+	     "Arimo"
+	     "Liberation Sans"
+	     "FreeSans"
+	     "DejaVu Sans"
+	     "Segoe UI")
+	     
 
 ;; Arabic/Farsi: چطوری, السّلام عليكم
 (ox/set-font "fontset-sans"
@@ -97,6 +104,29 @@
 (set-face-attribute 'variable-pitch nil
 		    :font "fontset-sans"
 		    :fontset "fontset-sans")
+
+;;/------------------------------------\;;
+;;|             SERIF FONT             |;;
+;;\------------------------------------/;;
+(ox/create-fontset "fontset-serif")
+
+
+;;/------------------------------------\;;
+;;|              EMOJI FONT            |;;
+;;\------------------------------------/;;
+(ox/set-font "fontset-default"
+	     'emoji
+	     "Noto Color Emoji"
+	     "Noto Emoji")
+
+;; emacs on windows does not support colored emojis
+(when (eq system-type 'windows-nt)
+  (ox/set-font "fontset-default"
+	       'emoji
+	       "Noto Emoji"
+	       "Segoe UI Emoji"))
+	       
+
 
 ;;/------------------------------------\;;
 ;;|            FALLBACK FONT           |;;
