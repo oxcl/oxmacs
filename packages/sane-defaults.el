@@ -3,7 +3,7 @@
       vc-follow-symlinks       t) ; follow a symlink without asking wtf?
 
 ;; why should i type the whole world "yes" instead of just "y" richard stallman? why??
-(fset 'yes-or-no-p 'y-or-no-p)
+(fset 'yes-or-no-p 'y-or-n-p)
 
 (delete-selection-mode 1)   ; Selected text will be overwritten when you start typing
 (global-auto-revert-mode t) ; Auto-update buffer if file has changed on disk

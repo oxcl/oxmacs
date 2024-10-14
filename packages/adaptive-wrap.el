@@ -1,2 +1,2 @@
 (use-package adaptive-wrap
-  :demand t)
+  :hook ((conf-mode prog-mode) . adaptive-wrap-prefix-mode))
