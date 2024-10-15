@@ -1,0 +1,140 @@
+#+TITLE: Font Configuraitons
+#+AUTHOR: oxcl
+
+* TLDR
+
+* Description
+This package configures emacs to use [[https://github.com/oxcl/iozevka][iozevka fonts]]. my modified version of the [[https://github.com/be5invis/iosevka][Iosevka font]].
+multiple fallbacks are set to make sure alternative fonts are used in case iozevka fonts are not installed.
+
+** Note About Windows
+on windows looking up for proper fonts specially for langauges and scripts other than english is extremly slow. by explicitly defining the fonts that windows uses for rendering those characters would significantly improves performance of emacs on windows.
+
+* Font Setup
+** Helper Functions
+#+BEGIN_SRC elisp
+  (defun ox/create-fontset (name)
+    "create an empty fontset named NAME"
+    (create-fontset-from-fontset-spec
+     (font-xlfd-name
+      (font-spec :registry name))))
+
+  (defun ox/set-default-font (&rest fonts)
+    "set the default/main emacs font with fallbacks"
+    (unless (null fonts)
+      (if (find-font (font-spec :name (car fonts)))
+	  (set-face-attribute 'default nil
+			      :font (car fonts)
+			      :height 90)
+	(apply #'ox/set-default-font (cdr fonts)))))
+
+  (defun ox/set-font (fontset script &rest fonts)
+    "set a font for a specific SCRIPT in FONTSET with fallbacks.
+     if non of the fonts are available look for an appropriate font on the system"
+    (set-fontset-font fontset script (car fonts))
+    (dolist (font (cdr fonts))
+      (set-fontset-font fontset script font nil 'append))
+    (set-fontset-font fontset script (font-spec :script script) nil 'append))
+#+END_SRC
+** Monospace
+For monospace i modify the default font by changing the font attribute of ~default~ face.
+To make sure characters from other languages and alphabets won't break the monospace grid, specific monospace fonts for arabic, hebrew, chinese and korean are also added to the ~fontset-default~ fontset which emacs will fallback to if a character is not provided by the main font.
+
+*** Latin
+I use ~ioZevka Code~ as my main font for latin scripts. ~ioZevka Mono~ is also set as fallback which is the same as ~ioZevka Code~ just without the ligatures.
+If ~ioZevka Code~ is not available on the system i use [[https://github.com/JetBrains/JetBrainsMono][JetBrains Mono]] and [[https://fonts.google.com/noto/specimen/Noto+Sans+Mono][Noto Sans Mono]] as fallbacks.
+#+BEGIN_SRC elisp
+(ox/set-default-font "ioZevka Code"
+		     "ioZevka Mono"
+		     "JetBrains Mono"
+		     "Noto Sans Mono"
+		     "Courier New" ; for windows
+		     "monospace")
+#+END_SRC
+*** Arabic/Farsi
+For Arabic/Farsi I use [[https://github.com/rastikerdar/vazir-code-font][Vazir Code Font]].
+#+BEGIN_SRC elisp
+  ;; سلام چطوری؟
+  (ox/set-font "fontset-default"
+	       'arabic
+	       (font-spec :name "Vazir Code Extra Height WOL" :size 13)
+	       (font-spec :name "Vazir Code Extra Height" :size 13)
+	       (font-spec :name "Vazir Code WOL" :size 13)
+	       (font-spec :name "Vazir Code" :size 13)
+	       "Courier New") ; for windows
+#+END_SRC
+
+*** CJK
+For CJK I use [[https://github.com/be5invis/Sarasa-Gothic][Sarasa Gothic]] and [[https://github.com/adobe-fonts/source-han-mono][Source Han Mono]] as fallback.
+#+BEGIN_SRC elisp
+  ;; CJK: 你好, 早晨, こんにちは, 안녕하세요
+  (ox/set-font "fontset-default"
+	       'han
+	       "Sarasa Mono SC"
+	       "Source Han Mono SC"
+	       "Noto Sans CJK SC Regular"
+	       "MS Gothic")
+  (ox/set-font "fontset-default"
+	       'kana
+	       "Sarasa Mono J"
+	       "Noto Sans CJK JP Regular"
+	       "MS Gothic")
+  (ox/set-font "fontset-default"
+	       'hangul
+	       "Sarasa Mono K"
+	       "Source Han Mono K"
+	       "Noto Sans CJK KR Regular"
+	       "Malgun Gothic") ; for windows
+#+END_SRC
+
+*** Hebrew
+For Hebrew I use [[https://www.gnu.org/software/freefont/][FreeMono]].
+#+BEGIN_SRC elisp
+  ;; Hebrew:  חפש סתם אהב
+  (ox/set-font "fontset-sans"
+	       'hebrew
+	       "Noto Sans Hebrew"
+	       "Courier New")
+
+#+END_SRC
+
+** Proportional Fonts
+this package also provides two new fontsets: ~fontset-sans~ and ~fontset-serif~ which are proportional fonts that can be used with ~variable-pitch-mode~ or ~mixed-pitch-mode~ and everywhere that a proportional font is more appropriate.
+
+*** Sans Serif
+#+BEGIN_SRC elisp
+  (ox/create-fontset "fontset-sans")
+  (set-face-attribute 'variable-pitch nil
+		      :font "fontset-sans"
+		      :fontset "fontset-sans")
+#+END_SRC
+
+**** Latin
+for Latin I use ~ioZevka Quasi~ which is the proportional variant of ~ioZevka Code~. I also specify bunch of Fallbacks which are common in linux distrobutions and windows systems.
+#+BEGIN_SRC elisp
+  (ox/set-font "fontset-sans"
+	       'latin
+	       "ioZevka Quasi"
+	       "Noto Sans"
+	       "Arimo"
+	       "Liberation Sans"
+	       "FreeSans"
+	       "DejaVu Sans"
+	       "Segoe UI")
+#+END_SRC
+**** Arabic/Farsi
+for Arabic/Farsi I use [[https://github.com/rastikerdar/vazirmatn][Vazir Matn]] which is the proportional variant of ~Vazir Code~. I also specify [[https://fonts.google.com/noto/specimen/Noto+Sans+Arabic][Noto Sans Arabic]], [[https://fonts.google.com/noto/specimen/Noto+Naskh+Arabic][Noto Naskh Arabic]] and IRANSansWeb as fallbacks.
+#+BEGIN_QUOTE
+سلام چطوری؟
+#+END_QUOTE
+#+BEGIN_SRC elisp
+(ox/set-font "fontset-sans"
+	     'arabic
+	     "Vazirmatn UI NL"
+	     "Vazirmatn UI"
+	     "Vazirmatn NL"
+	     "Vazirmatn"
+	     "Noto Sans Arabic"
+	     "Noto Naskh Arabic"
+	     "IRANSansWeb")
+#+END_SRC

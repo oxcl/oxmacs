@@ -1,109 +1,7 @@
-(defun ox/create-fontset (name)
-  "create an empty fontset named NAME"
-  (create-fontset-from-fontset-spec
-   (font-xlfd-name
-    (font-spec :registry name))))
-
-(defun ox/set-default-font (&rest fonts)
-  "set the default/main emacs font with fallbacks"
-  (unless (null fonts)
-    (if (find-font (font-spec :name (car fonts)))
-	(set-face-attribute 'default nil
-			    :font (car fonts)
-			    :height 90)
-      (apply #'ox/set-default-font (cdr fonts)))))
-
-(defun ox/set-font (fontset script &rest fonts)
-  "set a font for a specific SCRIPT in FONTSET with fallbacks.
-   if non of the fonts are available look for an appropriate font on the system"
-  (set-fontset-font fontset script (car fonts))
-  (dolist (font (cdr fonts))
-    (set-fontset-font fontset script font nil 'append))
-  (set-fontset-font fontset script (font-spec :script script) nil 'append))
-
-;;/------------------------------------\;;
-;;|           MONOSPACE FONT           |;;
-;;\------------------------------------/;;
-;; monospace as the main emacs font
-;; Latin
-(ox/set-default-font "ioZevka Code"
-		     "ioZevka Mono"
-		     "JetBrains Mono"
-		     "Noto Sans Mono"
-		     "Courier New"
-		     "monospace")
-
-;; Arabic/Farsi: چطوری, السّلام عليكم
-(ox/set-font "fontset-default"
-	     'arabic
-	     (font-spec :name "Vazir Code Extra Height WOL" :size 13)
-	     (font-spec :name "Vazir Code Extra Height" :size 13)
-	     (font-spec :name "Vazir Code WOL" :size 13)
-	     (font-spec :name "Vazir Code" :size 13))
-
-;; Hebrew: חפש סתם אהב
-(ox/set-font "fontset-default"
-	     'hebrew
-	     "FreeMono"
-	     "Courier New")
-
-;; CJK: 你好, 早晨, こんにちは, 안녕하세요
-(ox/set-font "fontset-default"
-	     'han
-	     "Sarasa Mono SC"
-	     "Source Han Mono SC"
-	     "Noto Sans CJK SC Regular"
-	     "MS Gothic")
-(ox/set-font "fontset-default"
-	     'kana
-	     "Sarasa Mono J"
-	     "Noto Sans CJK JP Regular"
-	     "MS Gothic")
-(ox/set-font "fontset-default"
-	     'hangul
-	     "Sarasa Mono K"
-	     "Source Han Mono K"
-	     "Noto Sans CJK KR Regular"
-	     "Malgun Gothic")
-
 ;;/------------------------------------\;;
 ;;|          SANS-SERIF FONT           |;;
 ;;\------------------------------------/;;
-;; sans serif for variable-pitch and mixed-pitch
-(ox/create-fontset "fontset-sans")
-
-;; Latin
-(ox/set-font "fontset-sans"
-	     'latin
-	     "ioZevka Quasi"
-	     "Noto Sans"
-	     "Arimo"
-	     "Liberation Sans"
-	     "FreeSans"
-	     "DejaVu Sans"
-	     "Segoe UI")
-	     
-
-;; Arabic/Farsi: چطوری, السّلام عليكم
-(ox/set-font "fontset-sans"
-	     'arabic
-	     "Vazirmatn UI NL"
-	     "Vazirmatn UI"
-	     "Vazirmatn NL"
-	     "Vazirmatn"
-	     "Noto Sans Arabic"
-	     "Noto Naskh Arabic"
-	     "IRANSansWeb")
-
-;; Hebrew:  חפש סתם אהב
-(ox/set-font "fontset-sans"
-	     'hebrew
-	     "Noto Sans Hebrew"
-	     "Courier New")
-
-(set-face-attribute 'variable-pitch nil
-		    :font "fontset-sans"
-		    :fontset "fontset-sans")
+;; sans serif for variable-pitch and mixed-pitch	     
 
 ;;/------------------------------------\;;
 ;;|             SERIF FONT             |;;
@@ -125,8 +23,6 @@
 	       'emoji
 	       "Noto Emoji"
 	       "Segoe UI Emoji"))
-	       
-
 
 ;;/------------------------------------\;;
 ;;|            FALLBACK FONT           |;;
