@@ -10,15 +10,15 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(setq ox/packages-directory (expand-file-name "packages/" real-emacs-directory)
-      ox/features-directory (expand-file-name "features/" real-emacs-directory)
-      ox/profiles-directory (expand-file-name "profiles/" real-emacs-directory))
+(setq ox/packages-directory (expand-file-name "packages" real-emacs-directory)
+      ox/features-directory (expand-file-name "features" real-emacs-directory)
+      ox/profiles-directory (expand-file-name "profiles" real-emacs-directory))
 
 (defun ox/load (directory file-name)
   (load (expand-file-name (format "%s.el" file-name) directory)))
 
 (defun ox/load-package (package)
-  (ox/load ox/packages-directory package))
+  (ox/load ox/packages-directory (format "%s/%s" package package)))
 
 (defun ox/load-feature (feature)
   (ox/load ox/features-directory feature))
@@ -29,7 +29,7 @@
 (ox/load-package "sane-defaults")
 (ox/load-package "use-package")
 (ox/load-package "gcmh")
-(ox/load-package "adaptive-wrap")
+;;(ox/load-package "adaptive-wrap")
 (ox/load-package "fonts")
 
 (use-package emacs
