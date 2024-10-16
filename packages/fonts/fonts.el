@@ -84,9 +84,9 @@
 				   "Nirmala UI")) ; for windows
 (ox/set-font "fontset-sans" 'gujarati ox/fonts-fallback-gujarati)
 
-(setq ox/fonts-fallback-devangari '("Noto Sans Devanagari"
+(setq ox/fonts-fallback-devanagari '("Noto Sans Devanagari"
 				    "Nirmala UI")) ; for windows
-(ox/set-font "fontset-sans" 'devanagari ox/fonts-fallback-devangari)
+(ox/set-font "fontset-sans" 'devanagari ox/fonts-fallback-devanagari)
 
 (setq ox/fonts-fallback-kannada '("Noto Sans Kannada"
 				 "Nirmala UI")) ; for windows
@@ -186,8 +186,8 @@
 
 (ox/set-font "fontset-serif"
 	     'devanagari
-	     `("Noto Sans Devangari"
-	       ,@ox/fonts-fallback-devangari))
+	     `("Noto Sans Devanagari"
+	       ,@ox/fonts-fallback-devanagari))
 
 (ox/set-font "fontset-serif"
 	     'kannada
@@ -274,7 +274,7 @@
 (ox/set-font "fontset-default" 'ethiopic ox/fonts-fallback-ethiopic)
 
 (ox/set-font "fontset-default" 'gujarati  ox/fonts-fallback-gujarati)
-(ox/set-font "fontset-default" 'devangari ox/fonts-fallback-davengari)
+(ox/set-font "fontset-default" 'devanagari ox/fonts-fallback-devanagari)
 (ox/set-font "fontset-default" 'kannada   ox/fonts-fallback-kannada)
 (ox/set-font "fontset-default" 'malayalam ox/fonts-fallback-malayalam)
 (ox/set-font "fontset-default" 'oriya     ox/fonts-fallback-oriya)

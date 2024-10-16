@@ -162,9 +162,9 @@ for Arabic/Farsi I use [[https://github.com/rastikerdar/vazirmatn][Vazir Matn]] 
 नमस्ते
 #+END_QOUTE
 #+BEGIN_SRC elisp
-  (setq ox/fonts-fallback-devangari '("Noto Sans Devanagari"
+  (setq ox/fonts-fallback-devanagari '("Noto Sans Devanagari"
 				      "Nirmala UI")) ; for windows
-  (ox/set-font "fontset-sans" 'devanagari ox/fonts-fallback-devangari)
+  (ox/set-font "fontset-sans" 'devanagari ox/fonts-fallback-devanagari)
 #+END_SRC
 #+BEGIN_QOUTE
 ನಮಸ್ಕಾರ
@@ -319,8 +319,8 @@ For Latin I use ~ioZevka Slabs~ which is the same as ~ioZevka Quasi~ but... with
 #+BEGIN_SRC elisp
   (ox/set-font "fontset-serif"
 	       'devanagari
-	       `("Noto Sans Devangari"
-		 ,@ox/fonts-fallback-devangari))
+	       `("Noto Sans Devanagari"
+		 ,@ox/fonts-fallback-devanagari))
 #+END_SRC
 #+BEGIN_SRC elisp
   (ox/set-font "fontset-serif"
@@ -441,7 +441,7 @@ for these fonts i don't have a specific monospace font so i just use the sans-se
 *** South Asian Scripts
 #+BEGIN_SRC elisp
   (ox/set-font "fontset-default" 'gujarati  ox/fonts-fallback-gujarati)
-  (ox/set-font "fontset-default" 'devangari ox/fonts-fallback-davengari)
+  (ox/set-font "fontset-default" 'devanagari ox/fonts-fallback-devanagari)
   (ox/set-font "fontset-default" 'kannada   ox/fonts-fallback-kannada)
   (ox/set-font "fontset-default" 'malayalam ox/fonts-fallback-malayalam)
   (ox/set-font "fontset-default" 'oriya     ox/fonts-fallback-oriya)

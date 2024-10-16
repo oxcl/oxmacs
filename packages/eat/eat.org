@@ -1,0 +1,17 @@
+#+TITLE: Eat
+#+AUTHOR: oxcl
+#+PROPERTY: header-args :tangle yes
+* TLDR
+Terminal Emulator implemented in emacs lisp
+
+* Descripiton
+[[https://codeberg.org/akib/emacs-eat][~emacs-eat]] is a terminal emulator for emacs implemented entierly in emacs lisp without any external dependencies unlike ~vterm~ which uses C libraries.
+This means anywhere that emacs can run ~eat~ can run too.
+It has sixel graphics, mouse support and shell integration.
+
+* Config
+#+BEGIN_SRC elisp
+  (use-package eat
+    :commands eat)
+#+END_SRC
+

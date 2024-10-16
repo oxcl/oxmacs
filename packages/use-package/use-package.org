@@ -2,7 +2,10 @@
 #+AUTHOR: oxcl
 #+PROPERTY: header-args :tangle yes
 * TLDR
+[[https://github.com/jwiegley/use-package][~use-package~]] allows you to declaratively configure your emacs packages.
 * Descripiton
+I use ~use-package~ package (which is builtin to emacs now) to make the configuration for packages more declarative and producible.
+~use-package~ also comes with a lot of lazy-loading features
 * Config
 #+BEGIN_SRC elisp
   (require 'use-package)
