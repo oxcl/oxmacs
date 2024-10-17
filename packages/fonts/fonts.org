@@ -451,6 +451,9 @@ for these fonts i don't have a specific monospace font so i just use the sans-se
   (ox/set-font "fontset-default" 'tibetan   ox/fonts-fallback-tibetan)
 #+END_SRC
 ** Emoji
+#+BEGIN_QOUTE
+❤️😎
+#+END_QOUTE
 #+BEGIN_SRC elisp
   (ox/set-font "fontset-default"
 	       'emoji

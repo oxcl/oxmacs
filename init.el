@@ -33,6 +33,7 @@
 (ox/load-package "fonts")
 (ox/load-package "which-key")
 (ox/load-package "eat")
+(ox/load-package "keybindings")
 
 (use-package emacs
   :custom
