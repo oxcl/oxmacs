@@ -1,0 +1,15 @@
+#+TITLE: Org Mode
+#+AUTHOR: oxcl
+#+PROPERTY: header-args :tangle yes
+
+* TLDR
+* Description
+* Config
+#+BEGIN_SRC elisp
+  (use-package org
+    :ensure nil
+    :mode ("\\.org$" . org-mode)
+    :commands (org-mode)
+    :config
+    (add-hook 'org-mode-hook #'visual-line-mode))
+#+END_SRC

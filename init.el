@@ -34,6 +34,7 @@
 (ox/load-package "which-key")
 (ox/load-package "eat")
 (ox/load-package "keybindings")
+(ox/load-package "org-mode")
 
 (use-package emacs
   :custom
