@@ -12,23 +12,6 @@ It tries to achieve this by replacing the awkard default emacs keybindings using
 I also try to unset the original keybindings to prevent myself from accidentally hitting them and unclutter the which-key window
 
 * Config
-** CUA Mode
-With CUA Mode:
- - ~C-c~ is copy
- - ~C-x~ is cut
- - ~C-v~ is paste
- - ~C-z~ is undo
-
-#+BEGIN_SRC elisp
-  (cua-mode t)
-  (setq cua-keep-region-after-copy t
-	cua-enable-cursor-indications t
-	cua-normal-cursor-color 'box
-	cua-overwrite-cursor-color 'hbar
-	cua-read-only-cursor-color 'hollow
-	cua-prefix-override-inhibit-delay 0.05)
-  (setq-default cursor-in-non-selected-windows nil)
-#+END_SRC
 ** ~ESC~ for Quit instead of ~C-g~
 Turns out vim does it better.
 #+BEGIN_SRC elisp

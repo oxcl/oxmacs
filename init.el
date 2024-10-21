@@ -33,8 +33,10 @@
 (ox/load-package "fonts")
 (ox/load-package "which-key")
 (ox/load-package "eat")
+(ox/load-package "cua-mode")
 (ox/load-package "keybindings")
 (ox/load-package "org-mode")
+(ox/load-package "vertico")
 
 (use-package emacs
   :custom

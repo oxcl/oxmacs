@@ -1,12 +1,3 @@
-(cua-mode t)
-(setq cua-keep-region-after-copy t
-      cua-enable-cursor-indications t
-      cua-normal-cursor-color 'box
-      cua-overwrite-cursor-color 'hbar
-      cua-read-only-cursor-color 'hollow
-      cua-prefix-override-inhibit-delay 0.05)
-(setq-default cursor-in-non-selected-windows nil)
-
 ;; the following code snippet is used to enable the <escape> key to be recognized by terminal environments
 ;; taken from: https://github.com/emacsorphanage/god-mode/issues/43#issuecomment-67193877
 
