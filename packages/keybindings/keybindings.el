@@ -1,6 +1,11 @@
+(use-package keybindings
+  :ensure nil
+  :no-require
+  :demand t
+  :config
+
 ;; the following code snippet is used to enable the <escape> key to be recognized by terminal environments
 ;; taken from: https://github.com/emacsorphanage/god-mode/issues/43#issuecomment-67193877
-
 (defvar oxcl/fast-keyseq-timeout 50) ; this timeout determines if a ESC is a Alt combination or a single <escape>
 (defun oxcl/-tty-ESC-filter (map)
   (if (and (equal (this-single-command-keys) [?\e])
@@ -24,3 +29,5 @@
 ;; meaning if you want to bound someting to C-g you have to use <escape>
 (define-key input-decode-map [?\C-g] [escape] )
 (define-key input-decode-map [escape] [?\C-g] )
+
+)

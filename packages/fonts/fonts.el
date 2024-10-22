@@ -1,3 +1,10 @@
+(use-package fonts
+  :ensure nil
+  :no-require
+  :if (display-graphic-p)
+  :demand t
+  :config
+
 (defun ox/create-fontset (name)
   "create an empty fontset named NAME"
   (create-fontset-from-fontset-spec
@@ -293,3 +300,5 @@
 	       'emoji
 	       '("Noto Emoji"
 		 "Segoe UI Emoji")))
+
+) ; end of use-package

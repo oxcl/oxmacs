@@ -8,5 +8,6 @@
 	cua-normal-cursor-color 'box
 	cua-overwrite-cursor-color 'hbar
 	cua-read-only-cursor-color 'hollow
-	cua-prefix-override-inhibit-delay 0.05)
+	cua-prefix-override-inhibit-delay 0.05
+	cua-auto-tabify-rectangles nil)
   (setq-default cursor-in-non-selected-windows nil))

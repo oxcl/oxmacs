@@ -8,6 +8,14 @@ This package configures emacs to use [[https://github.com/oxcl/iozevka][iozevka 
 multiple fallbacks are set to make sure alternative fonts are used in case iozevka fonts are not installed.
 
 * Config
+#+BEGIN_SRC elisp
+  (use-package fonts
+    :ensure nil
+    :no-require
+    :if (display-graphic-p)
+    :demand t
+    :config
+#+END_SRC
 ** Helper Functions
 #+BEGIN_SRC elisp
   (defun ox/create-fontset (name)
@@ -465,6 +473,10 @@ for these fonts i don't have a specific monospace font so i just use the sans-se
 		 'emoji
 		 '("Noto Emoji"
 		   "Segoe UI Emoji")))
+#+END_SRC
+** End
+#+BEGIN_SRC elisp
+  ) ; end of use-package
 #+END_SRC
 * Notes
 ** Note About Windows

@@ -12,7 +12,7 @@ With CUA Mode:
  - ~C-v~ is paste
  - ~C-z~ is undo
 
-CUA Mode also provides some nice customizations related to how the cursor looks in different "modes".
+CUA Mode also provides some nice customizations related to rectangle selection and how the cursor looks in insert modes (normal/read-only/overwrite)
 
 * Config
 #+BEGIN_SRC elisp
@@ -26,6 +26,7 @@ CUA Mode also provides some nice customizations related to how the cursor looks 
 	  cua-normal-cursor-color 'box
 	  cua-overwrite-cursor-color 'hbar
 	  cua-read-only-cursor-color 'hollow
-	  cua-prefix-override-inhibit-delay 0.05)
+	  cua-prefix-override-inhibit-delay 0.05
+	  cua-auto-tabify-rectangles nil)
     (setq-default cursor-in-non-selected-windows nil))
 #+END_SRC
