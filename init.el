@@ -36,6 +36,7 @@
 (ox/load-package "keybindings")
 (ox/load-package "org-mode")
 (ox/load-package "vertico")
+(ox/load-package "tab-line")
 
 (use-package emacs
   :custom
