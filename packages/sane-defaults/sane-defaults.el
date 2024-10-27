@@ -1,3 +1,9 @@
+(use-package sane-defaults
+:ensure nil
+:demand t
+:no-require
+:config
+
 (setq initial-sctratch-message "" ; Make *sctratch* buffer empty
       ring-bell-function #'ignore ; disable visual and audible bell
       vc-follow-symlinks       t) ; follow a symlink without asking. wtf?
@@ -73,3 +79,5 @@
 
 ;; no blinking cursor please
 (blink-cursor-mode 0)
+
+) ; use-package end

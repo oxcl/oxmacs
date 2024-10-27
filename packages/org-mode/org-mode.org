@@ -21,7 +21,6 @@
        :noquery t
        :sentinel (lambda (process event)
 		   (when (equal event "finished\n")
-		     (message "Loading...")
 		     (load (concat (file-name-sans-extension (buffer-file-name)) ".el"))))
        :command `("emacs" "-Q"
 		  "--batch"

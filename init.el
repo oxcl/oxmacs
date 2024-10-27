@@ -14,6 +14,12 @@
       ox/features-directory (expand-file-name "features" real-emacs-directory)
       ox/profiles-directory (expand-file-name "profiles" real-emacs-directory))
 
+(require 'use-package)
+(setq use-package-compute-statistics t
+      use-package-verbose init-file-debug
+      use-package-always-ensure t
+      use-package-always-defer  t)
+
 (defun ox/load (directory file-name)
   (load (expand-file-name (format "%s.el" file-name) directory)))
 
@@ -27,7 +33,6 @@
   (ox/load ox/profiles-directory profiles))
 
 (ox/load-package "sane-defaults")
-(ox/load-package "use-package")
 (ox/load-package "gcmh")
 (ox/load-package "fonts")
 (ox/load-package "which-key")
