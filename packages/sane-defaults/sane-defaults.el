@@ -11,8 +11,9 @@
 ;; teach emacs to keep your folders clean
 (setq create-lockfiles nil
       backup-directory-alist `((".*" . ,(expand-file-name "backups/" user-emacs-directory)))
+      auto-save-file-name-transforms `((".*"  ,(expand-file-name "auto-saves/" user-emacs-directory) t))
       auto-save-default t
-      auto-save-list-file-prefix (expand-file-name "auto-saves/" user-emacs-directory))
+      auto-save-no-message t)
 (make-directory auto-save-list-file-prefix t)
 
 ;; save the cursor position for files across emacs sessions
