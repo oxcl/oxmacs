@@ -57,10 +57,6 @@
 ;; Increase how much is read from processes in a single chunk (default is 4kb).
 (setq read-process-output-max (* 64 1024))  ; 64kb
 
-;; this inhibits fontification while
-;; receiving input, which should help a little with scrolling performance.
-(setq redisplay-skip-fontification-on-input t)
-
 ;; Disable bidirectional text scanning for a modest performance boost.
 (setq-default bidi-display-reordering 'left-to-right
 	      bidi-paragraph-direction 'left-to-right)
